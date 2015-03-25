@@ -10,9 +10,10 @@ gem 'kaminari'                    #用來製造分頁的gem
 
 gem 'rails', '4.1.8'
 
-group :development do
+group :development, :test do
   gem 'sqlite3'
 end
+
 group :production do
   gem 'pg'
   gem 'rails_12factor'
