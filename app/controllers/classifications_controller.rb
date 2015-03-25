@@ -1,11 +1,11 @@
 class ClassificationsController < ApplicationController
   #before_action :set_classification, only: [:show, :edit, :update, :destroy]
-  before_action :company_set
+  #before_action :company_set
   # GET /classifications
   # GET /classifications.json
   def index
     @classifications = Classification.all
-    @company = Company.find(1)
+   # @company = Company.find(1)
   end
 
   # GET /classifications/1
@@ -13,7 +13,7 @@ class ClassificationsController < ApplicationController
   def show
     @classification = Classification.find(params[:id])
     @items = @classification.items
-    @company = Company.find(1)
+   # @company = Company.find(1)
   end
 
   # GET /classifications/new
@@ -70,9 +70,9 @@ class ClassificationsController < ApplicationController
 
 
   private
-   def company_set
-      @company = Company.find(1)
-    end
+  # def company_set
+   #   @company = Company.find(1)
+   # end
     # Use callbacks to share common setup or constraints between actions.
     def set_classification
       @classification = Classification.find(params[:id])

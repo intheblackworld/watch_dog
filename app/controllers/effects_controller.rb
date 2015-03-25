@@ -1,11 +1,11 @@
 class EffectsController < ApplicationController
-  before_action :company_set
+  #before_action :company_set
   before_action :set_effect, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
   # GET /effects
   # GET /effects.json
   def index
-    @company = Company.find(1)
+    #@company = Company.find(1)
     @effects = Effect.page(params[:page]).per(6)
      respond_to do |format|
       format.html
@@ -70,9 +70,9 @@ class EffectsController < ApplicationController
   end
 
   private
-   def company_set
-      @company = Company.find(1)
-    end
+  # def company_set
+    #  @company = Company.find(1)
+   # end
     # Use callbacks to share common setup or constraints between actions.
     def set_effect
       @effect = Effect.find(params[:id])

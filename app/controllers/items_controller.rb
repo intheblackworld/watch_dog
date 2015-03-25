@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :company_set
+  #before_action :company_set
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show, :list_all]
   # GET /items
@@ -7,14 +7,14 @@ class ItemsController < ApplicationController
   def index
    @classification = Classification.find(params[:classification_id]) 
    @items = @classification.items.page(params[:page]).per(5)
-   @company = Company.find(1)
+   #@company = Company.find(1)
   end
 
   def list_all
 
     @classifications = Classification.all
     @items = Item.page(params[:page]).per(9)
-    @company = Company.find(1)
+   # @company = Company.find(1)
   end
 
   # GET /items/1
@@ -76,9 +76,9 @@ class ItemsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def company_set
-      @company = Company.find(1)
-    end
+    #def company_set
+   #   @company = Company.find(1)
+  #  end
     def set_item
       @classification = Classification.find(params[:classification_id])
       @item = @classification.items.find(params[:id])

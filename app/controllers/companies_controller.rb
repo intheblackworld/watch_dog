@@ -3,10 +3,10 @@ class CompaniesController < ApplicationController
 
   respond_to :html
 
-  def _header
-    @companys = Company.find
-    (1)
-  end
+  #def _header
+  #  @companys = Company.find
+  #  (1)
+ # end
 
   def show
     respond_with(@company)
@@ -37,9 +37,9 @@ class CompaniesController < ApplicationController
   end
 
   private
-    def set_company
-      @company = Company.find(1)
-    end
+   # def set_company
+   #   @company = Company.find(1)
+   # end
 
     def company_params
       params.require(:company).permit(:name)

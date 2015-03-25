@@ -1,12 +1,12 @@
 class SpecialsController < ApplicationController
-  before_action :company_set
+  #before_action :company_set
   before_action :set_special, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
   # GET /specials
   # GET /specials.json
   def index
     @specials = Special.page(params[:page]).per(4)
-    @company = Company.find(1)
+   # @company = Company.find(1)
   end
 
   # GET /specials/1
@@ -68,9 +68,9 @@ class SpecialsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-     def company_set
-      @company = Company.find(1)
-    end
+    # def company_set
+    #  @company = Company.find(1)
+   # end
     def set_special
       @special = Special.find(params[:id])
     end

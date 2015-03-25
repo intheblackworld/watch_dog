@@ -1,5 +1,5 @@
 class AdminsController < ApplicationController
-before_action :company_set
+#before_action :company_set
 before_action :authenticate_user!  
 protect_from_forgery
 skip_before_action :verify_authenticity_token, if: :js_request?
@@ -47,9 +47,9 @@ skip_before_action :verify_authenticity_token, if: :js_request?
 
 protected
   
-   def company_set
-      @company = Company.find(1)
-    end
+  # def company_set
+  #    @company = Company.find(1)
+  #  end
 
   def js_request?
     request.format.js?

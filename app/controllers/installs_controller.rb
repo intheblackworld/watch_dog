@@ -1,12 +1,12 @@
 class InstallsController < ApplicationController
-  before_action :company_set
+  #before_action :company_set
   before_action :set_install, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
   # GET /installs
   # GET /installs.json
   def index
     @installs = Install.page(params[:page]).per(3)
-    @company = Company.find(1)
+    #@company = Company.find(1)
   end
 
   # GET /installs/1
@@ -66,9 +66,9 @@ class InstallsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-     def company_set
-      @company = Company.find(1)
-    end
+    # def company_set
+     # @company = Company.find(1)
+   # end
     def set_install
       @install = Install.find(params[:id])
     end
