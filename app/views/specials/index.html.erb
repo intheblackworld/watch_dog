@@ -1,29 +1,90 @@
-<h1>Listing specials</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Price</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<% if current_user %>
+<%= link_to '新增特惠方案', new_special_path, class: 'btn btn-info btn-lg' %>
+<%end%>
 
-  <tbody>
-    <% @specials.each do |special| %>
-      <tr>
-        <td><%= special.title %></td>
-        <td><%= special.description %></td>
-        <td><%= special.price %></td>
-        <td><%= link_to 'Show', special %></td>
-        <td><%= link_to 'Edit', edit_special_path(special) %></td>
-        <td><%= link_to 'Destroy', special, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="container">
+
+        <!-- Page Header -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">特惠方案
+                    <small>限時特價，優惠活動，好好把握</small>
+                </h1>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <!-- Projects Row -->
+    <% @specials.each_slice(2) do |specials| %>
+     
+        <div class="row">
+         <% specials.each do |special| %>
+              <div class="col-md-6 effect-item">
+  
+                
+                <a href="#">
+                    <%= image_tag special.image.url(:medium) %>
+                </a>
+              <table class="table table-hover">
+              <tr>  <h2 style="color:#428bca">
+                    <%= special.title %>
+                </h2>
+               </tr>
+               <tr> 
+               <td> <h3 style="color:#D80000 "> 破盤價:</h3></td>
+               <td><h3><mark> <%= special.price %></mark></h3></td>
+               <tr>
+               <tr>
+               <td> <h3 style="color:#D80000 ">優惠期間:</h3></td>
+               <td><h3><mark> <%= special.description %></mark></h3></td>
+               <tr>
+                    <% if !current_user %>
+                    <%else%>
+                    <td><%= link_to '修改', edit_special_path(special) %></td>
+                    <td><%= link_to '刪除', special, method: :delete, data: { confirm: '你確定嗎?' } %></td>
+                    <%end%>
+               <tr>     
+              </table>      
+              </div>
+          <% end %>           
+        </div>
+      
+    <%end %>
+
+
+            <!-- Pagination -->
+        <div class="row text-center">
+            <div class="col-lg-12">
+                <ul class="pagination">
+                    <%= paginate @specials, :theme => 'bootstrap3'  %>
+                    
+                </ul>
+            </div>
+
+          <%= link_to '回到首頁', root_path, class: "btn btn-info btn-lg" %>
+
+        </div>
+        <!-- /.row -->
+      
+
+
+
+
+        <!-- Footer -->
+ 
+
+
+        
+
+    </div>
+    <!-- /.container -->
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
 
 <br>
-
-<%= link_to 'New Special', new_special_path %>

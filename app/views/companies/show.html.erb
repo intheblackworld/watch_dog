@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>原來公司名稱:</strong>
+  <%= @company.name %>
+</p>
+
+<%= link_to '修改公司名稱', edit_company_path(1) %> |
+<%= link_to 'Back', root_path %>

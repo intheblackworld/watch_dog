@@ -1,0 +1,22 @@
+<div class="tab-pane active" id="#effect_list">
+   <table class="table table-striped">
+    <tr><br><%= link_to '新增實機效果', new_effect_path, class: 'btn btn-info btn-lg ' %><br></tr>
+    <tr><td><h2>標題或編號</h2></td>
+        <td><h2>縮圖</h2></td>
+        <td><h2>修改</h2></td>
+        <td><h2>刪除</h2></td>
+    </tr>
+
+    <% @effects.each do |effect| %>
+
+    <tr>  
+      <td><%= effect.title %></td>
+      <td><%= image_tag effect.image.url(:thumb) %></td>
+                    <td><%= link_to '修改', edit_effect_path(effect) %></td>
+                    <td><%= link_to '刪除', effect, method: :delete, data: { confirm: '你確定嗎?' } %></td>
+    </tr>
+
+          <% end %> 
+    </table>
+
+</div> 

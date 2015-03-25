@@ -1,15 +1,19 @@
 class ClassificationsController < ApplicationController
-  before_action :set_classification, only: [:show, :edit, :update, :destroy]
-
+  #before_action :set_classification, only: [:show, :edit, :update, :destroy]
+  before_action :company_set
   # GET /classifications
   # GET /classifications.json
   def index
     @classifications = Classification.all
+    @company = Company.find(1)
   end
 
   # GET /classifications/1
   # GET /classifications/1.json
   def show
+    @classification = Classification.find(params[:id])
+    @items = @classification.items
+    @company = Company.find(1)
   end
 
   # GET /classifications/new
@@ -19,6 +23,7 @@ class ClassificationsController < ApplicationController
 
   # GET /classifications/1/edit
   def edit
+    @classification = Classification.find(params[:id])
   end
 
   # POST /classifications
@@ -28,7 +33,7 @@ class ClassificationsController < ApplicationController
 
     respond_to do |format|
       if @classification.save
-        format.html { redirect_to @classification, notice: 'Classification was successfully created.' }
+        format.html { redirect_to classifications_path, notice: 'Classification was successfully created.' }
         format.json { render :show, status: :created, location: @classification }
       else
         format.html { render :new }
@@ -61,7 +66,13 @@ class ClassificationsController < ApplicationController
     end
   end
 
+
+
+
   private
+   def company_set
+      @company = Company.find(1)
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_classification
       @classification = Classification.find(params[:id])

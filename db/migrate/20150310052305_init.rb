@@ -22,7 +22,7 @@ class Init < ActiveRecord::Migration
       t.timestamps
     end
 
-    create_table :classfications do |t|
+    create_table :classifications do |t|
       t.string :title
 
       

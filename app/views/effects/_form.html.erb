@@ -10,12 +10,24 @@
       </ul>
     </div>
   <% end %>
+  <div class="col-md-4 col-md-offset-4 down-mid">
+  <h1>新增實機效果</h1>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :title %><br>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, class: 'form-control', placeholder: '輸入標題' %><br>
+    <%= f.label :image %>
+    <%= f.file_field :image, class: 'form-control' %>
   </div>
+
+  <div class="row">
+  <div class="col-md-4">
   <div class="actions">
-    <%= f.submit %>
+    <%= f.button :submit, class: 'btn btn-primary btn-lg' %>
+    <hr>
+    <%= link_to '回上頁', effects_path %>
+  </div>
+  </div>  
+  </div>
   </div>
 <% end %>

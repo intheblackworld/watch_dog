@@ -1,0 +1,24 @@
+<div class="tab-pane active" id="#install_list">
+      <table class="table table-striped">
+    <tr><br><%= link_to '新增安裝案例', new_install_path, class: 'btn btn-info btn-lg ' %><br></tr>
+    <tr>
+        <td><h2>地區</h2></td>
+        <td><h2>描述</h2></td>
+        <td><h2>縮圖</h2></td>
+        <td><h2>修改</h2></td>
+        <td><h2>刪除</h2></td>
+    </tr>
+
+    <% @installs.each do |install| %>
+
+    <tr>  
+      <td><%= install.area %></td>
+      <td><%= install.description %></td>
+      <td><%= image_tag install.image.url(:thumb) %></td>
+                    <td><%= link_to '修改', edit_install_path(install) %></td>
+                    <td><%= link_to '刪除', install, method: :delete, data: { confirm: '你確定嗎?' } %></td>
+    </tr>
+
+          <% end %> 
+    </table>
+</div> 

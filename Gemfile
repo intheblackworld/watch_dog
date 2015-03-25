@@ -5,10 +5,19 @@ gem 'bootstrap-sass', '~> 3.3.3'  #套用bootstrap
 gem 'sass-rails', '>= 3.2'        #套用sass
 gem "paperclip", "~> 4.2"         #圖片上傳
 gem 'devise'
+gem 'kaminari'                    #用來製造分頁的gem
 
 
 gem 'rails', '4.1.8'
-gem 'sqlite3'
+
+group :development do
+  gem 'sqlite3'
+end
+group :production do
+  gem 'pg'
+  gem 'rails_12factor'
+end
+
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'

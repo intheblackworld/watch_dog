@@ -1,10 +1,12 @@
 class InstallsController < ApplicationController
+  before_action :company_set
   before_action :set_install, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!, except: [:index, :show]
   # GET /installs
   # GET /installs.json
   def index
-    @installs = Install.all
+    @installs = Install.page(params[:page]).per(3)
+    @company = Company.find(1)
   end
 
   # GET /installs/1
@@ -28,8 +30,9 @@ class InstallsController < ApplicationController
 
     respond_to do |format|
       if @install.save
-        format.html { redirect_to @install, notice: 'Install was successfully created.' }
-        format.json { render :show, status: :created, location: @install }
+        format.html { redirect_to admin_path, notice: '安裝案例已新增' }
+
+
       else
         format.html { render :new }
         format.json { render json: @install.errors, status: :unprocessable_entity }
@@ -42,8 +45,8 @@ class InstallsController < ApplicationController
   def update
     respond_to do |format|
       if @install.update(install_params)
-        format.html { redirect_to @install, notice: 'Install was successfully updated.' }
-        format.json { render :show, status: :ok, location: @install }
+        format.html { redirect_to admin_path, notice: '安裝案例已新增' }
+
       else
         format.html { render :edit }
         format.json { render json: @install.errors, status: :unprocessable_entity }
@@ -56,19 +59,22 @@ class InstallsController < ApplicationController
   def destroy
     @install.destroy
     respond_to do |format|
-      format.html { redirect_to installs_url, notice: 'Install was successfully destroyed.' }
-      format.json { head :no_content }
+        format.html { redirect_to admin_path, notice: '安裝案例已新增' }
+
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
+     def company_set
+      @company = Company.find(1)
+    end
     def set_install
       @install = Install.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def install_params
-      params.require(:install).permit(:description, :area)
+      params.require(:install).permit(:description, :area, :image)
     end
 end

@@ -1,0 +1,49 @@
+<div class="tab-pane active" id="#item_list">
+     <table class="table table-striped">
+      <tr><h1>如欲新增產品請先選擇以下類別</h1></tr>
+    <tr>
+      <% @classifications.each_slice(4) do |classifications| %>
+      <div class="row">
+      <% classifications.each do |classification| %>
+
+      <div class="col-md-3 center-text">
+        <%= link_to classification_items_path(classification), class: "btn btn-success " do %>
+          <%=classification.title %>
+          <span class="badge"><%= classification.items.size %></span>
+        <%end%>
+        
+        <% if !current_user %>
+        <%else%>
+        <%= link_to '修改', edit_classification_path(classification) %>
+        <%= link_to '刪除', classification, method: :delete, data: { confirm: 'Are you sure?' } %> 
+        <hr>
+        <%end%>
+
+       </div>
+       <%end%> 
+      </div>
+
+    <% end %>
+    </tr>
+    <tr>
+        <td><h2>型號</h2></td>
+        <td><h2>名稱</h2></td>
+        <td><h2>縮圖</h2></td>
+        <td><h2>修改</h2></td>
+        <td><h2>刪除</h2></td>
+    </tr>
+
+    <% @items.each do |item| %>
+
+    <tr>  
+      <td><h3><%= item.model_number %></h3></td>
+      <td><%= item.title %></td>
+      <td><%= image_tag item.image.url(:thumb) %></td>
+                    <td><%= link_to '修改',edit_classification_item_path(@classifications,item) %></td>
+                    <td><%= link_to '刪除',classification_item_path(@classifications,item), method: :delete, data: { confirm: '你確定嗎?' } %></td>
+
+    </tr>
+          <% end %> 
+    
+    </table>
+</div> 

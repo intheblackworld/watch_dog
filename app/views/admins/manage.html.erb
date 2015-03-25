@@ -1,0 +1,26 @@
+
+<script>
+$(function() {
+    $( "#tabs" ).tabs();
+  });
+  </script>
+
+ <%= link_to '新增公司名稱', new_company_path %>
+<div class="col-md-12">
+<div id="proftab">
+    <ul class="nav nav-tabs">
+          <li class="active">
+          <li><%= link_to "產品列表", admin_item_list_path(format: :js), :remote => true %></li>
+          </li>
+            <li><%= link_to "實機效果列表", admin_effect_list_path(format: :js), :remote => true %></li>
+          <li><%= link_to "安裝案例列表", admin_install_list_path(format: :js), :remote => true %></li>
+          <li><%= link_to "特惠方案列表", admin_special_list_path(format: :js), :remote => true %></li>
+    </ul>
+</div>
+<div class="row">
+    <div id="profile" class="span9">
+
+    </div>
+</div>
+
+</div>
