@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+ruby '2.1.3'
 gem 'simple_form'              #表單        
 gem 'bootstrap-sass', '~> 3.3.3'  #套用bootstrap
 gem 'sass-rails', '>= 3.2'        #套用sass
