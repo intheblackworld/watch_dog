@@ -6,13 +6,22 @@ gem 'sass-rails', '>= 3.2'        #套用sass
 gem "paperclip", "~> 4.2"         #圖片上傳
 gem 'devise'
 gem 'kaminari'                    #用來製造分頁的gem
-gem 'capistrano-rails', :group => :development
-gem 'capistrano-passenger', :group => :development
 
+group :development do
+  gem "brakeman", require: false
+  gem "rails_best_practices", require: false
+  gem "sqlite3"
+  gem "capistrano",  "~> 3.1", require: false
+  gem "capistrano-rvm", "~> 0.1.1", require: false
+  gem "capistrano-rails", "~> 1.1", require: false
+  gem "capistrano-rbenv", "~> 2.0", require: false # production server use rbenv
+  gem 'capistrano-ssh-doctor', '~> 1.0'
+
+end
 
 gem 'rails', '4.1.8'
 
-gem 'mysql2'
+
 
 group :production do
   gem 'pg'

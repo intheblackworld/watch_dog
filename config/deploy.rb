@@ -1,14 +1,30 @@
 # config valid only for current version of Capistrano
 lock '3.4.0'
 
-set :application, 'my_app_name'
-set :repo_url, 'git@example.com:me/my_repo.git'
+
+set :application, 'watch_dog'
+set :repo_url, 'git@github.com:intheblackworld/watch_dog.git'
+
+
+set  :deploy_user ,  'root'             #設置部署時的用戶
+
+set  :scm ,  :git 
+set  :format ,  :pretty 
+set  :pty ,  true
 
 # Default branch is :master
-# ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
+set  :rvm_type , :system 
+set  :rvm_ruby_version ,  '2.1.3' 
+set  :rvm_roles , [ :app ,  :web ,  :db ]
+
+set  :keep_releases ,  10    #最多存放十個部署版本
 # Default deploy_to directory is /var/www/my_app_name
-# set :deploy_to, '/var/www/my_app_name'
+set :deploy_to, "/home/root/watch_dog"
+
+set :log_level, :debug
+
+
 
 # Default value for :scm is :git
 # set :scm, :git
@@ -22,26 +38,17 @@ set :repo_url, 'git@example.com:me/my_repo.git'
 # Default value for :pty is false
 # set :pty, true
 
-# Default value for :linked_files is []
-# set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/secrets.yml')
+set :linked_files, %w(config/database.yml config/secrets.yml) 
 
-# Default value for linked_dirs is []
-# set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system')
+# git clone 完成後會從 shared 資料夾 copy 過去的資料夾
 
-# Default value for default_env is {}
-# set :default_env, { path: "/opt/ruby/bin:$PATH" }
-
-# Default value for keep_releases is 5
-# set :keep_releases, 5
+set :linked_dirs, fetch(:linked_dirs, []).push("bin", "log", "tmp/pids", "tmp/cache", "tmp/sockets", "vendor/bundle", "public/system") 
 
 namespace :deploy do
 
   after :restart, :clear_cache do
     on roles(:web), in: :groups, limit: 3, wait: 10 do
-      # Here we can do anything such as:
-      # within release_path do
-      #   execute :rake, 'cache:clear'
-      # end
+        execute :rake, 'cache:clear'
     end
   end
 
