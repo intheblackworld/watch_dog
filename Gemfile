@@ -6,13 +6,13 @@ gem 'sass-rails', '>= 3.2'        #套用sass
 gem "paperclip", "~> 4.2"         #圖片上傳
 gem 'devise'
 gem 'kaminari'                    #用來製造分頁的gem
+gem 'capistrano-rails', :group => :development
+gem 'capistrano-passenger', :group => :development
 
 
 gem 'rails', '4.1.8'
 
-group :development, :test do
-  gem 'sqlite3'
-end
+gem 'mysql2'
 
 group :production do
   gem 'pg'
