@@ -23,6 +23,9 @@ set  :keep_releases ,  10    #最多存放十個部署版本
 set :deploy_to, "/home/root/watch_dog"
 
 set :log_level, :debug
+set :stages, ["production"]
+set :tmp_dir, "watch_dog/tmp"
+
 
 
 
